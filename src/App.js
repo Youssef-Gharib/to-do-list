@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import ToDoList from "./Component/ToDoList";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { TasksContext } from "./Context/context";
+import { useState } from "react";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ["Arabic"],
+  },
+});
 
 function App() {
+  let [tasks,  setTasks] = useState([])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <ThemeProvider theme={theme}>
+      <TasksContext.Provider value={{tasks, setTasks}}>
+        <div
+          className="App"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            height: "100vh",
+            backgroundColor: "#202323",
+            direction: "rtl",
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <ToDoList />
+        </div>
+      </TasksContext.Provider>
+    </ThemeProvider>
   );
 }
 
