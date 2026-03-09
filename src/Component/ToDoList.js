@@ -27,21 +27,21 @@ export default function ToDoList() {
   let [taskType, setTaskType] = useState("all");
   const { tasks, setTasks } = useContext(TasksContext);
   // === hooks ===
-  
-  const achievedTask = tasks.filter((t)=> {return t.isCompleted}) ; 
-  const nonAchievedTask = tasks.filter((t)=> {return !t.isCompleted}) ; 
-  let taskTypeSelected =tasks; 
- 
 
- 
-  if(taskType==="achieved"){
-    taskTypeSelected = achievedTask; 
-  }
-  else if(taskType==="non-achieved"){
-    taskTypeSelected = nonAchievedTask; 
-  }
-  else{
-    taskTypeSelected = tasks; 
+  const achievedTask = tasks.filter((t) => {
+    return t.isCompleted;
+  });
+  const nonAchievedTask = tasks.filter((t) => {
+    return !t.isCompleted;
+  });
+  let taskTypeSelected = tasks;
+
+  if (taskType === "achieved") {
+    taskTypeSelected = achievedTask;
+  } else if (taskType === "non-achieved") {
+    taskTypeSelected = nonAchievedTask;
+  } else {
+    taskTypeSelected = tasks;
   }
 
   let todo = taskTypeSelected.map((t) => {
@@ -49,7 +49,7 @@ export default function ToDoList() {
   });
 
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks")) ?? [] ;
+    const storedTasks = JSON.parse(localStorage.getItem("tasks")) ?? [];
     setTasks(storedTasks);
   }, [setTasks]);
 
@@ -71,8 +71,8 @@ export default function ToDoList() {
     setInputTitle("");
   }
 
-  function selectTaskType(e){
-    setTaskType(e.target.value)
+  function selectTaskType(e) {
+    setTaskType(e.target.value);
   }
 
   return (
@@ -82,13 +82,13 @@ export default function ToDoList() {
           className="tasksCard"
           sx={{
             minWidth: 275,
-            border: "10px solid #fffdf7",
+            border: "8px solid #e7e7e79d",
             borderRadius: "30px",
           }}
-          style={{}}
         >
           <CardContent
-            sx={{ border: "5px solid #96d6ad", borderRadius: "20px" }}
+            sx={{  borderRadius: "20px" }}
+            style={{ maxHeight: "80vh", overflowY: "scroll" }}
           >
             <Typography
               variant="h3"
@@ -177,7 +177,7 @@ export default function ToDoList() {
             </ToggleButtonGroup>
 
             {/* tasks */}
-           
+
             {todo}
             {/* === tasks === */}
 
@@ -203,7 +203,7 @@ export default function ToDoList() {
                     width: "100%",
                     "& .MuiOutlinedInput-root": { borderRadius: "15px" },
                     "& .MuiInputLabel-root": { fontSize: "20px" },
-                    "& .MuiInputLabel-shrink": { fontSize: "17px" },
+                    "& .MuiInputLabel-shrink": { fontSize: "17px", color:"#3d724e"},
                   }}
                 />
               </Grid>
@@ -211,12 +211,18 @@ export default function ToDoList() {
                 <Button
                   onClick={handleAddTask}
                   variant="contained"
-                  style={{
+                  disabled={inputTitle === ""}
+                  sx={{
                     width: "100%",
                     height: "100%",
                     fontSize: "25px",
-                    backgroundColor: "#569f71",
+                    backgroundColor: "#3d724e",
                     borderRadius: "20px",
+
+                    "&.Mui-disabled": {
+                      backgroundColor: "#95af9d", // لون الزر وهو disabled
+                      color: "#dae6de",
+                    },
                   }}
                 >
                   اضافة

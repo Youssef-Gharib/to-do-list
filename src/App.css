@@ -1,20 +1,18 @@
 .App {
   text-align: center;
-  background-image: url("../public/assets/bg.png");
+  background-image: url("../public/assets/2.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
 }
 .tasksCard {
-  background-image: url("../public/assets/bg.png") !important;
-  background-size: cover;
-  background-position: center;
+
   background: linear-gradient(
     to bottom,
-    rgb(241, 255, 241),
-    rgba(204, 244, 204, 0.852),
-    rgba(156, 203, 156, 0.764)
+    rgba(241, 255, 228, 0.847),
+    rgba(126, 224, 182, 0.597),
+    rgba(163, 221, 229, 0.764)
   ) !important;
 }
 
@@ -63,4 +61,28 @@
 .task{
   box-shadow: 5px 5px 10px rgba(0,0,0,0.3) ;
   border-radius: 20px;
+}
+
+
+
+/* عرض السكرول */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* الخلفية */
+::-webkit-scrollbar-track {
+  background: #96d6ad;
+  border-radius: 10px;
+}
+
+/* الجزء اللي بيتحرك */
+::-webkit-scrollbar-thumb {
+  background: #48855e;
+  border-radius: 10px;
+}
+
+/* عند الـ hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3d724e;
 }

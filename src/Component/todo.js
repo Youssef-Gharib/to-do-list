@@ -196,9 +196,9 @@ export default function Todo({ todo }) {
               <IconButton
                 className="iconButtonStyle"
                 style={{
-                  backgroundColor: todo.isCompleted ? "#569f71" : "#fff",
-                  color: todo.isCompleted ? "#fff" : "#569f71",
-                  border: "3px solid #569f71",
+                  backgroundColor: todo.isCompleted ? "#3d724e" : "#fff",
+                  color: todo.isCompleted ? "#fff" : "#3d724e",
+                  border: "3px solid #3d724e",
                 }}
                 onClick={handleCheckClick}
               >
@@ -220,7 +220,7 @@ export default function Todo({ todo }) {
               {/* Delete Button */}
               <IconButton
                 className="iconButtonStyle"
-                style={{ color: "#d50808e2", border: "3px solid" }}
+                style={{ color: "#ef0707", border: "3px solid" }}
                 aria-label="add an alarm"
                 onClick={handleDeleteButton}
               >
