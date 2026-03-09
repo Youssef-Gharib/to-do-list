@@ -49,7 +49,7 @@ export default function ToDoList() {
   });
 
   useEffect(() => {
-    const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+    const storedTasks = JSON.parse(localStorage.getItem("tasks")) ?? [] ;
     setTasks(storedTasks);
   }, [setTasks]);
 
