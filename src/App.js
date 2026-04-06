@@ -3,6 +3,8 @@ import ToDoList from "./Component/ToDoList";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { TasksContext } from "./Context/context";
 import { useState } from "react";
+import { ToastProvider } from "./Context/toastContext";
+
 
 const theme = createTheme({
   typography: {
@@ -11,22 +13,26 @@ const theme = createTheme({
 });
 
 function App() {
-  let [tasks,  setTasks] = useState([])
+  let [tasks, setTasks] = useState([]);
+
   return (
     <ThemeProvider theme={theme}>
-      <TasksContext.Provider value={{tasks, setTasks}}>
-        <div
-          className="App"
-          style={{
-            display: "flex",
-            alignItems: "center",
-            height: "100vh",
-            backgroundColor: "#202323",
-            direction: "rtl",
-          }}
-        >
-          <ToDoList />
-        </div>
+      <TasksContext.Provider value={{ tasks, setTasks }}>
+        <ToastProvider>
+          <div
+            className="App"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              height: "100vh",
+              backgroundColor: "#202323",
+              direction: "rtl",
+            }}
+          >
+            
+            <ToDoList />
+          </div>
+        </ToastProvider>
       </TasksContext.Provider>
     </ThemeProvider>
   );

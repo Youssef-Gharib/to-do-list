@@ -1,4 +1,6 @@
 import { createContext } from "react";
 
-export const TasksContext = createContext([]);
 export const dialogContext = createContext(false);
+export const TasksContext = createContext([]);
+
+

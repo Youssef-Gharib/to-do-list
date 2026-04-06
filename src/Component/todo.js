@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { useContext } from "react";
 import { TasksContext } from "../Context/context";
+import { useToast } from "../Context/toastContext";
 
 /* ICONS */
 import IconButton from "@mui/material/IconButton";
@@ -13,32 +14,36 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Todo({ todo, onDelete, onEdit }) {
-  const { tasks, setTasks } = useContext(TasksContext);
-  
- 
+  const { tasks, setTasks} = useContext(TasksContext);
+  const {showHideToast} = useToast(); 
 
   function handleCheckClick() {
+    let updatedTask; 
     let updateTasks = tasks.map((t) => {
       if (todo.id === t.id) {
-        return {
+       return updatedTask = {
           ...t,
-          isCompleted: !t.isCompleted,
+          isCompleted: !t.isCompleted,        
         };
       }
       return t;
     });
     setTasks(updateTasks);
     localStorage.setItem("tasks", JSON.stringify(updateTasks));
+    if (updatedTask.isCompleted) {
+      showHideToast("تم اكتمال المهمة ✅", "success");
+    } else {
+      showHideToast("تم إلغاء إكمال المهمة ❗", "info");
+    }
   }
 
-  function handleDeleteButton(){
-    onDelete(todo)
+  function handleDeleteButton() {
+    onDelete(todo);
   }
-  function handleUpdateButton(){
-    onEdit(todo)
+  function handleUpdateButton() {
+    onEdit(todo);
   }
 
-  
   return (
     <div className="task">
       {/* dialog component */}

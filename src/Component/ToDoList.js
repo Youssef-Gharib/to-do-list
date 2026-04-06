@@ -20,7 +20,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 //hooks
 import { useState, useContext, useEffect, useMemo } from "react";
 import { TasksContext } from "../Context/context";
-
+import { useToast } from "../Context/toastContext";
 // component
 import Todo from "./todo";
 
@@ -34,7 +34,8 @@ export default function ToDoList() {
   let [updateInputs, setUpdateInputs] = useState({ name: "", description: "" });
   let [inputTitle, setInputTitle] = useState("");
   let [taskType, setTaskType] = useState("all");
-  const { tasks, setTasks } = useContext(TasksContext);
+  const { tasks, setTasks} = useContext(TasksContext);
+  const {showHideToast}= useToast();
   // === hooks ===
 
   const achievedTask = useMemo(() => {
@@ -84,6 +85,7 @@ export default function ToDoList() {
     setTasks(updateTasks);
     localStorage.setItem("tasks", JSON.stringify(updateTasks));
     setInputTitle("");
+    showHideToast("تمت اضافة مهمة جديدة ", "success");
   }
 
   function selectTaskType(e) {
@@ -99,6 +101,7 @@ export default function ToDoList() {
     localStorage.setItem("tasks", JSON.stringify(updateTasks));
     handleCloseDialog();
     setTaskTodo(null);
+    showHideToast("تم الحذف", "error");
   }
 
   function handleCloseDialog() {
@@ -123,6 +126,7 @@ export default function ToDoList() {
     setTasks(updateTasks)
     localStorage.setItem("tasks", JSON.stringify(updateTasks))
     handleCloseUpdateDialog()
+    showHideToast("تم التعديل بنجاح","success")
   }
 
    function handleOpenDeleteDialog(t) {
@@ -389,6 +393,8 @@ export default function ToDoList() {
             </CardContent>
           </Card>
         </Container>
+
+     
     </>
   );
 }
